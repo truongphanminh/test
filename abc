@@ -1,0 +1,22 @@
+import discord
+from panda import Panda
+
+
+
+client = discord.Client()
+
+panda = Panda()
+
+@client.event
+async def on_message(message):
+  if message.author == client.user:
+    return
+
+  if message.content.startswith("/generate"):
+    prompt = message.content[len("/generate") :]
+
+    image = panda.generate_image(prompt)
+
+    await message.channel.send(image)
+
+client.run("MTExMTAwMDc5MDI2NjU1MjQ2NA.GlE8mP.WgFTBh-lYtwYS6Knt-PsRAK-5EuclqmFSvV864")
